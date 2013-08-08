@@ -1,3 +1,5 @@
+// TODO: check input types
+
 function Game(id) {
 	this.id = id;
 	this.startCB = null;
@@ -23,11 +25,11 @@ Game.prototype.onStart = function(callback)
 	this.startCB = callback;
 }
 
-// Game.end(wonGame, score): call this when the game is over. lostGame (boolean), score (integer)
-Game.prototype.end = function(lostGame, score)
+// Game.end(wonGame, score): call this when the game is over. wonGame (boolean), score (integer)
+Game.prototype.end = function(wonGame, score)
 {
-    console.log('end:'+ lostGame + ' '+ score);
-    this.endCB(lostGame, score);  
+    console.log('end:'+ wonGame + ' '+ score);
+    this.endCB(wonGame, score);  
 }
 
 

@@ -15,24 +15,36 @@
 <div id="screens">
 	<div id="welcome">
 		<h1 id="gameTitle"></h1>
-		<a href="#" id="lstart">Start</a>
-		<a href="#" id="lleaderboard">Scores</a>
-		<a href="#" id="lcredits">Credits</a>
+		<ul>
+			<li><a href="#" id="lstart">Start</a></li>
+			<li><a href="#" id="lleaderboard">Scores</a></li>
+			<li><a href="#" id="lcredits">Credits</a></li>
+		</ul>
+		<div id="footer">Powered by <a href="https://github.com/biou/CoinWare">CoinWare</a></div>
 	</div>
 	<div id="loading">
 		<h1>Loading</h1>
-		<p>please wait</p>
+		<p>Please wait!</p>
 		<div id="gameCounter"></div>
 	</div>
 	<div id="transition">
 		<h1>Ready??</h1>
+		<p>Score: <span class="score"></span></p>		
+	</div>
+	<div id="levelup">
+		<h1>Level <span class="level"></span></h1>
+		<p>Score: <span class="score"></span></p>		
 	</div>
 	<div id="youwin">
 		<h1>You Win!</h1>
+		<p>Level: <span class="level"></span></p>
+		<p>Score: <span class="score"></span></p>
 		<a href="#" class="backHome">Back to Home</a>
 	</div>
 	<div id="youlose">
 		<h1>You lose!</h1>
+		<p>Level: <span class="level"></span></p>
+		<p>Score: <span class="score"></span></p>		
 		<a href="#" class="backHome">Back to Home</a>		
 	</div>
 	<div id="leaderboard">

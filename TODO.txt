@@ -1,0 +1,19 @@
+- basic styling
+- input validation in the Game object
+- dom ready & game ready
+- Documentation
+	- doc for Construct2 & Gamemaker:studio
+- credits
+- should work without server (no leaderboard)
+- test with Mut's game
+
+=== v0.5 -> public
+
+- leaderboard
+- samples
+	- flash
+	- unity
+	- scratch
+	- contact CraftStudio to see if an integration is possible with their webplayer
+
+

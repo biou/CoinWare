@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Game Name</title>
+<meta charset="utf-8" />
+
+<link rel="stylesheet" type="text/css" href="GameMgr/main.css" media="screen" />
+<script type="text/javascript" src="GameMgr/lib/jquery-1.10.0.min.js"></script>
+<script type="text/javascript" src="config.js"></script> 
+<script type="text/javascript" src="GameMgr/nav.js"></script>  
+<script type="text/javascript" src="GameMgr/Game.js"></script>   
+<script type="text/javascript" src="GameMgr/main.js"></script>   
+</head>
+<body>
+<div id="screens">
+	<div id="welcome">
+		<h1 id="gameTitle"></h1>
+		<a href="#" id="lstart">Start</a>
+		<a href="#" id="lleaderboard">Scores</a>
+		<a href="#" id="lcredits">Credits</a>
+	</div>
+	<div id="loading">
+		<h1>Loading</h1>
+		<p>please wait</p>
+		<div id="gameCounter"></div>
+	</div>
+	<div id="transition">
+		<h1>Ready??</h1>
+	</div>
+	<div id="youwin">
+		<h1>You Win!</h1>
+		<a href="#" class="backHome">Back to Home</a>
+	</div>
+	<div id="youlose">
+		<h1>You lose!</h1>
+		<a href="#" class="backHome">Back to Home</a>		
+	</div>
+	<div id="leaderboard">
+		<h1>High Scores</h1>
+		<a href="#" class="backHome">Back to Home</a>		
+	</div>
+	<div id="credits">
+		<h1>Credits</h1>
+		<a href="#" class="backHome">Back to Home</a>		
+	</div>
+</div>
+</body>
+</html>

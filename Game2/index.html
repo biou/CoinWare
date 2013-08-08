@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<script type="text/javascript" src="../GameMgr/lib/jquery-1.10.0.min.js"></script>
+  <script type="text/javascript"> 
+  window.gameReady = function() {
+        Game.onStart(function(difficulty) {
+          console.log('difficulty '+difficulty);
+        });
+        $('#button2').click(function() {
+          Game.end(false, 2);
+          return false;
+        });
+  }; 
+  </script>  
+</head>
+<body>
+  <h1>Game2</h1>
+  <form>
+    <button id="button2" >End game</button>
+  </form>
+</body>
+</html>

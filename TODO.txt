@@ -1,12 +1,5 @@
-v- basic styling
-v- input validation in the Game object
-v- dom ready & game ready
-v- Documentation
-- credits
+v- credits
 	- + thumbnail.jpg management
-~- should work without server (no leaderboard)
-- test with Mut's game
-v- delete console.log
 
 - for Evalyzer
 	- change in the DOM: success / failure + name of the game

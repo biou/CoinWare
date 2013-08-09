@@ -2,7 +2,6 @@ function GameStatus() {
     this.gamesLoaded = 0;
     this.gameIndex = -1;
     this.games = [];
-    this.gamesManifests = [];
     this.level = 1;
     this.lifes = startLifes;
     this.score = 0;
@@ -54,6 +53,25 @@ function gameTransition(wonGame, score) {
     }
 }
 
+function renderCredits() {
+    // loading game manifests
+
+    for (i = 0; i< gamesId.length; i++) {
+        $.getJSON(gamesId[i]+'/manifest.json')
+            .done(function(data) {
+                $('#creditsList').append('<div class="creditElem"><p><b>'+data.name+'</b> by '+data.teamName+'<br />'+ data.description+'<br /></p><ul>');
+                for (i=0; i<data.credits.length; i++) {
+                    var e = data.credits[i];
+                    $('#creditsList').append('<li>'+e.job+': <a href="'+e.url+'">'+e.name+'</a></li>');
+                }
+                $('#creditsList').append('</ul></div>');
+            })
+            .fail(function( jqxhr, textStatus, error ) {
+                var err = textStatus + ', ' + error;
+                console.log( "Request Failed: " + err);
+            });
+    }      
+}
 
 
 function loadGames() {
@@ -64,19 +82,6 @@ function loadGames() {
         gameStatus.shuffle[i] = i;
     }
     gameStatus.shuffle.shuffle();   
-
-	// loading game manifests
-
-	for (i = 0; i< gamesId.length; i++) {
-		$.getJSON(gamesId[i]+'/manifest.json')
-			.done(function(data) {
-				gameStatus.gamesManifests.push(data);
-			})
-			.fail(function( jqxhr, textStatus, error ) {
-				var err = textStatus + ', ' + error;
-				console.log( "Request Failed: " + err);
-			});
-	}
 
 	// iframes creation
 	for (i = 0; i< gamesId.length; i++) {

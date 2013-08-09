@@ -32,6 +32,7 @@ manifest.json
 The manifest.json file should have the following structure:
 
 	{
+	    "id": "YourMiniGame",
 	    "name": "My Mini-Game",
 	    "description": "My elevator pitch goes here",
 	    "teamName": "MyTeam",
@@ -52,7 +53,7 @@ The manifest.json file should have the following structure:
 	    ]
 	}
 
-
+* id: it should correspond to the folder name
 * name: it is obviously the name of your mini-game
 * description: describe in a few words what it is, what it does
 * teamName: the name of your team if you have one

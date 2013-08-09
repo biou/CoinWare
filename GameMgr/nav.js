@@ -24,6 +24,7 @@ $(document).ready(function() {
         return false;
     });
 	$('#lcredits').click(function() {
+		renderCredits();
 		showScreen('credits');
         return false;
     });           

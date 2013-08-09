@@ -1,11 +1,16 @@
-- basic styling
-- input validation in the Game object
-- dom ready & game ready
-- Documentation
-	- doc for Construct2 & Gamemaker:studio
+v- basic styling
+v- input validation in the Game object
+v- dom ready & game ready
+v- Documentation
 - credits
-- should work without server (no leaderboard)
+	- + thumbnail.jpg management
+~- should work without server (no leaderboard)
 - test with Mut's game
+v- delete console.log
+
+- for Evalyzer
+	- change in the DOM: success / failure + name of the game
+	- loading of the game via url parameter
 
 === v0.5 -> public
 
@@ -15,5 +20,8 @@
 	- unity
 	- scratch
 	- contact CraftStudio to see if an integration is possible with their webplayer
+	- Construct2
+	- GameMaker:Studio
+
 
 

@@ -1,5 +1,20 @@
 {
-  "name": "CatInABox",
-  "description": "Put the cat in the box!",
-  "teamName": "The Legendaries"
+    "name": "My Mini-Game",
+    "description": "My elevator pitch goes here",
+    "teamName": "MyTeam",
+    "Credits": [{
+        "name": "Bob",
+        "job": "Graphism",
+        "url": "http://your-homepage-here.org"
+    }, {
+        "name": "Jack",
+        "job": "Music",
+        "url": "http://your-homepage-here.org"
+    }
+    }, {
+        "name": "Paul",
+        "job": "Code",
+        "url": "http://your-homepage-here.org"
+    }
+    ]
 }

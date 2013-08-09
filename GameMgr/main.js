@@ -7,7 +7,6 @@ function GameStatus() {
     this.lifes = startLifes;
     this.score = 0;
     this.shuffle = [];
-    console.log('lifes:'+this.lifes);
 }
 
 gameStatus = null;
@@ -45,7 +44,6 @@ function gameTransition(wonGame, score) {
             incrementLevel();
             gameStatus.gameIndex = -1;
             gameStatus.shuffle.shuffle();
-            console.log(gameStatus.shuffle.toString());
             showScreen('levelup');
             setTimeout(function() {
                 nextGame();
@@ -65,8 +63,7 @@ function loadGames() {
     for (i=0; i<gamesId.length; i++) {
         gameStatus.shuffle[i] = i;
     }
-    gameStatus.shuffle.shuffle();
-    console.log(gameStatus.shuffle.toString());    
+    gameStatus.shuffle.shuffle();   
 
 	// loading game manifests
 
@@ -122,8 +119,7 @@ function injectGameIntoIframe(iframe, game) {
             try
             { 
                 var doc = iframe.contentWindow || iframe.contentDocument;
-                // FIXME: perhaps check here if the dom is ready ?
-                if (doc.gameReady) {
+                if (doc.gameReady && iframe.contentDocument.readyState == 'complete') {
                     iframe.opener = iframe;                
                     doc.parent = null;
                     doc.Game = game; 
@@ -144,10 +140,13 @@ function injectGameIntoIframe(iframe, game) {
 
 function loading() {
     gameStatus.gamesLoaded++;
-    $('#gameCounter').empty();
-    $('#gameCounter').append(''+gameStatus.gamesLoaded+'/'+gamesId.length);
+    $('#gameCounter').attr('value', gameStatus.gamesLoaded/gamesId.length*100);
     if (gameStatus.gamesLoaded == gamesId.length) {
-        nextGame(); 
+            $('#hud').show();
+            showScreen('levelup');
+            setTimeout(function() {
+                nextGame();
+            }, 1500); 
     }
 }
 
@@ -164,7 +163,6 @@ Array.prototype.shuffle = function() {
 }
 
 function displayHearts(n) {
-    console.log('hearts '+n);
     var str = "";
     for (i=0; i<n; i++) {
         str+= '&hearts; ';

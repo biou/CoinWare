@@ -1,7 +1,17 @@
 body {
 	margin: 0;
+	text-align: center;
 }
 
+#footer {
+	position:absolute;
+	bottom: 2px;
+	right: 2px;
+}
+
+#welcome {
+	position: relative;
+}
 
 #hud {
 	display: none;
@@ -40,10 +50,6 @@ span.hleft {
 
 span.hright {
 	float: right;
-}
-
-body {
-	text-align: center;
 }
 
 iframe {

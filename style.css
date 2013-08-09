@@ -1,0 +1,5 @@
+#welcome ul li {
+	list-style-type: none;
+	display: inline;
+	padding: 10px;
+}

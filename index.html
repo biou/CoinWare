@@ -5,6 +5,7 @@
 <meta charset="utf-8" />
 
 <link rel="stylesheet" type="text/css" href="GameMgr/main.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
 <script type="text/javascript" src="GameMgr/lib/jquery-1.10.0.min.js"></script>
 <script type="text/javascript" src="config.js"></script> 
 <script type="text/javascript" src="GameMgr/nav.js"></script>  
@@ -26,12 +27,13 @@
 	<div id="loading" class="nohud">
 		<h1>Loading</h1>
 		<p>Please wait!</p>
-		<div id="gameCounter"></div>
+		<progress id="gameCounter" max="100" value="0"></progress>
 	</div>
 	<div id="transition">
 		<h1>Ready??</h1>	
 	</div>
-	<div id="levelup">		
+	<div id="levelup">
+		<h1>Level <span class="level">1</span></h1>		
 	</div>
 	<div id="youwin">
 		<h1>You Win!</h1>

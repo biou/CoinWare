@@ -30,6 +30,7 @@ function gameTransition(wonGame, score) {
     if (!wonGame) {
         gameStatus.lifes--;
         if (gameStatus.lifes == 0) {
+            $('.lifes').empty();
             showScreen('youlose');
             return;
         }

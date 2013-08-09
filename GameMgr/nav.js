@@ -15,6 +15,7 @@ $(document).ready(function() {
     });
 
 	$('.backHome').click(function() {
+		$('#hud').hide();
 		showScreen('welcome');
         return false;
     }); 

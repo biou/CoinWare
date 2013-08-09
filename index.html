@@ -12,8 +12,9 @@
 <script type="text/javascript" src="GameMgr/main.js"></script>   
 </head>
 <body>
+<div id="hud"><span class="hleft">Lifes: <span class="lifes"></span></span> Level: <span class="level">1</span> <span class="hright">Score: <span class="score">0</span></span></div>	
 <div id="screens">
-	<div id="welcome">
+	<div id="welcome" class="nohud">
 		<h1 id="gameTitle"></h1>
 		<ul>
 			<li><a href="#" id="lstart">Start</a></li>
@@ -22,36 +23,29 @@
 		</ul>
 		<div id="footer">Powered by <a href="https://github.com/biou/CoinWare">CoinWare</a></div>
 	</div>
-	<div id="loading">
+	<div id="loading" class="nohud">
 		<h1>Loading</h1>
 		<p>Please wait!</p>
 		<div id="gameCounter"></div>
 	</div>
 	<div id="transition">
-		<h1>Ready??</h1>
-		<p>Score: <span class="score"></span></p>		
+		<h1>Ready??</h1>	
 	</div>
-	<div id="levelup">
-		<h1>Level <span class="level"></span></h1>
-		<p>Score: <span class="score"></span></p>		
+	<div id="levelup">		
 	</div>
 	<div id="youwin">
 		<h1>You Win!</h1>
-		<p>Level: <span class="level"></span></p>
-		<p>Score: <span class="score"></span></p>
 		<a href="#" class="backHome">Back to Home</a>
 	</div>
 	<div id="youlose">
-		<h1>You lose!</h1>
-		<p>Level: <span class="level"></span></p>
-		<p>Score: <span class="score"></span></p>		
+		<h1>You lose!</h1>		
 		<a href="#" class="backHome">Back to Home</a>		
 	</div>
-	<div id="leaderboard">
+	<div id="leaderboard" class="nohud">
 		<h1>High Scores</h1>
 		<a href="#" class="backHome">Back to Home</a>		
 	</div>
-	<div id="credits">
+	<div id="credits" class="nohud">
 		<h1>Credits</h1>
 		<a href="#" class="backHome">Back to Home</a>		
 	</div>

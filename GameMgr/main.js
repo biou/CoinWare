@@ -16,8 +16,9 @@ gameStatus = null;
 function nextGame() {
     gameStatus.gameIndex++;
     var g = gameStatus.games[gameStatus.shuffle[gameStatus.gameIndex]];
-    $('#iframeContainer_'+g.id+' .lifes').empty();
-    $('#iframeContainer_'+g.id+' .lifes').append(displayHearts(gameStatus.lifes));
+    $('.lifes').empty();
+    $('.lifes').append(displayHearts(gameStatus.lifes));
+    $('#hud').show();
     showScreen('iframeContainer_'+g.id);
     g.start(gameStatus.level);
 }
@@ -104,7 +105,6 @@ function loadGames() {
         iframe.setAttribute('scrolling', 'no');
         iframe.src = id + '/index.html';
         
-        $(iframeContainer).append('<div class="hud">Lifes: <span class="lifes"></span> Level: <span class="level">1</span> Score: <span class="score">0</span></div>');
         iframeContainer.appendChild(iframe);
 
         $('#screens').append(iframeContainer);

@@ -1,0 +1,17 @@
+{
+    "id": "Game3",
+    "name": "Nombres premiers",
+    "description": "Trouvez les nombres premiers",
+    "teamName": "MyTeam",
+    "credits": [
+        {
+            "name": "Bob",
+            "job": "Graphism",
+            "url": "http://your-homepage-here.org"
+        },{
+            "name": "Jack",
+            "job": "Code",
+            "url": "http://your-homepage-here.org"           
+        }
+    ]
+}

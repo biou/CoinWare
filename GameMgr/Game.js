@@ -3,6 +3,7 @@ function Game(id) {
 	this.startCB = null;
 	this.readyCB = null;
 	this.endCB = null;
+	this.status = "stopped";
 };
 
 // methods to use in your game
@@ -20,13 +21,23 @@ Game.prototype.end = function(wonGame, score)
     if ((typeof wonGame)!='boolean' && (typeof score) !='integer') {
     	throw "Game.end: invalid data";
     }
-    console.log('end called');
-    this.endCB(wonGame, score);  
+    if (this.status != "stopped") {
+	this.status = "stopped";
+	console.log('end called');
+	this.endCB(wonGame, score); 
+    }	else {
+	console.log('game  '+this.id+' already stopped');
+    }
 }
 
 Game.prototype.ready = function()
 {
-	this.readyCB();
+	if (this.status != "ready") {
+		this.status = "ready";
+		this.readyCB();
+	} else {
+		console.log('game  '+this.id+' already ready');		
+	}
 }
 
 Game.prototype.onReady = function(callback)
@@ -36,7 +47,12 @@ Game.prototype.onReady = function(callback)
 
 Game.prototype.start = function(difficulty)
 {
-	this.startCB(difficulty);
+	if (this.status != "running") {
+		this.status = "running";
+		this.startCB(difficulty);
+	} else {
+		console.log('game '+this.id+' already started');
+	}
 }
 
 Game.prototype.onEnd = function(callback)

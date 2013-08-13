@@ -1,5 +1,3 @@
-- prevent multiple calls of Game.ready() and Game.end()	
-
 - for Evalyzer
 	- change in the DOM: success / failure + name of the game
 	- loading of the game via url parameter

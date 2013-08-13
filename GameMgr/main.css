@@ -13,6 +13,9 @@ body {
 	position: relative;
 }
 
+#credits {
+	overflow: auto;
+}
 #hud {
 	display: none;
 	width: 802px;
@@ -25,7 +28,7 @@ body {
 #screens>div {
 	display: none;
 	width:802px;
-	min-height: 480px;
+	height: 480px;
 	border: black 1px solid;
 	margin: auto;
 	margin-top:0px;

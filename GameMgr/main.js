@@ -63,7 +63,7 @@ function renderCredits() {
     for (i = 0; i< gamesId.length; i++) {
         $.getJSON(gamesId[i]+'/manifest.json')
             .done(function(data) {
-                $('#creditsList').append('<div class="creditElem"><p><b>'+data.name+'</b> by '+data.teamName+'<br />'+ data.description+'<br /></p><ul>');
+                $('#creditsList').append('<div class="creditElem"><img width="200" src="'+data.id+'/thumbnail.jpg" alt="'+data.name+'" /><p><b>'+data.name+'</b> by '+data.teamName+'<br />'+ data.description+'<br /></p><ul>');
                 for (i=0; i<data.credits.length; i++) {
                     var e = data.credits[i];
                     $('#creditsList').append('<li>'+e.job+': <a href="'+e.url+'">'+e.name+'</a></li>');

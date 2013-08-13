@@ -1,5 +1,4 @@
-v- credits
-	- + thumbnail.jpg management
+- prevent multiple calls of Game.ready() and Game.end()	
 
 - for Evalyzer
 	- change in the DOM: success / failure + name of the game

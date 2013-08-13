@@ -4,14 +4,23 @@
 <meta charset="utf-8" />
 <script type="text/javascript" src="../GameMgr/lib/jquery-1.10.0.min.js"></script>
 	<script type="text/javascript">
-	function gameReady() {
-    		Game.onStart(function(difficulty) {
+	function gameLoad(gameMgr) {
+		// configure your game
+		gameMgr.onStart(function(difficulty) {
     			console.log('difficulty '+difficulty);
+			
+			// start game loop here
+			
+			
     		});
-    		$('#button1').click(function() {
-    			Game.end(false, 1);
-    			return false;
-    		});
+		$('#button1').click(function() {
+			gameMgr.end(false, 1);
+			return false;
+		});		
+		
+		
+		// load your assets here
+		setTimeout(function() { gameMgr.ready(); });
 	}; 
 	</script>  
 </head>

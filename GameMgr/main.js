@@ -13,6 +13,8 @@ gameStatus = null;
 
 function nextGame() {
     gameStatus.gameIndex++;
+	console.log(gameStatus.shuffle);
+	console.log(gameStatus.gameIndex);
     var g = gameStatus.games[gameStatus.shuffle[gameStatus.gameIndex]];
     $('.lifes').empty();
     $('.lifes').append(displayHearts(gameStatus.lifes));
@@ -34,12 +36,14 @@ function gameTransition(wonGame, score) {
         }
     }
     if (gameStatus.gameIndex != (gameStatus.games.length-1)) {
+	    console.log('plop1');
         showScreen('transition');
         setTimeout(function() {
             nextGame();
         }, 500);
     } else {
         if (gameStatus.level != maxLevels) {
+		console.log('plop2');
             incrementLevel();
             gameStatus.gameIndex = -1;
             gameStatus.shuffle.shuffle();
@@ -124,12 +128,12 @@ function injectGameIntoIframe(iframe, game) {
             try
             { 
                 var doc = iframe.contentWindow || iframe.contentDocument;
-                if (doc.gameReady && iframe.contentDocument.readyState == 'complete') {
+                if (doc.gameLoad && iframe.contentDocument.readyState == 'complete') {
                     iframe.opener = iframe;                
                     doc.parent = null;
-                    doc.Game = game; 
-                    doc.gameReady(); 
-                    game.ready();                                     
+                    //doc.Game = game; 
+                    doc.gameLoad(game); 
+                    //game.ready();                                     
                 } else {
                     injectGameIntoIframe(iframe, game);
                 }

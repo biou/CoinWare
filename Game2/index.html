@@ -3,22 +3,31 @@
 <head>
 <meta charset="utf-8" />
 <script type="text/javascript" src="../GameMgr/lib/jquery-1.10.0.min.js"></script>
-  <script type="text/javascript"> 
-  window.gameReady = function() {
-        Game.onStart(function(difficulty) {
-          console.log('difficulty '+difficulty);
-        });
-        $('#button2').click(function() {
-          Game.end(true, 1);
-          return false;
-        });
-  }; 
-  </script>  
+	<script type="text/javascript">
+	function gameLoad(gameMgr) {
+		// configure your game
+		gameMgr.onStart(function(difficulty) {
+    			console.log('difficulty '+difficulty);
+			
+			// start game loop here
+			
+			
+    		});
+		$('#button1').click(function() {
+			gameMgr.end(false, 1);
+			return false;
+		});		
+		
+		
+		// load your assets here
+		setTimeout(function() { gameMgr.ready(); }, 1500);
+	}; 
+	</script>  
 </head>
 <body>
-  <h1>Game2</h1>
-  <form>
-    <button id="button2" >End game</button>
-  </form>
+	<h1>Game2</h1>
+	<form>
+		<button id="button1" >End game</button>
+	</form>
 </body>
 </html>

@@ -3,7 +3,7 @@ var gameName = "Game Name";
 
 // Put in this array the name of your mini-game 
 // (the same name you used for the folder of your mini-game)
-var gamesId = [ "Game1"];
+var gamesId = [ "Game1", "Game2"];
 
 // number of levels in the global game
 var maxLevels = 3;

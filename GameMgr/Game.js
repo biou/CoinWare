@@ -3,7 +3,6 @@ function Game(id) {
 	this.startCB = null;
 	this.readyCB = null;
 	this.endCB = null;
-	this.readyStatus = false;
 };
 
 // methods to use in your game
@@ -21,15 +20,12 @@ Game.prototype.end = function(wonGame, score)
     if ((typeof wonGame)!='boolean' && (typeof score) !='integer') {
     	throw "Game.end: invalid data";
     }
+    console.log('end called');
     this.endCB(wonGame, score);  
 }
 
-
-// all the code after this line should not be used directly in your game!
-/////////////////////////////////////////////////////////////////////////
 Game.prototype.ready = function()
 {
-	this.readyStatus = true;
 	this.readyCB();
 }
 

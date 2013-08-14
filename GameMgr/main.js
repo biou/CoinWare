@@ -6,6 +6,7 @@ function GameStatus() {
     this.lifes = startLifes;
     this.score = 0;
     this.shuffle = [];
+    this.forceGame = false;
 }
 
 gameStatus = null;
@@ -19,6 +20,7 @@ function nextGame() {
     $('.lifes').empty();
     $('.lifes').append(displayHearts(gameStatus.lifes));
     $('#hud').show();
+    $('#gameName').empty().append(g.id);
     showScreen('iframeContainer_'+g.id);
     g.start(gameStatus.level);
 }
@@ -31,19 +33,18 @@ function gameTransition(wonGame, score) {
         gameStatus.lifes--;
         if (gameStatus.lifes == 0) {
             $('.lifes').empty();
+	    $('#result').empty().append('lost');
             showScreen('youlose');
             return;
         }
     }
     if (gameStatus.gameIndex != (gameStatus.games.length-1)) {
-	    console.log('plop1');
         showScreen('transition');
         setTimeout(function() {
             nextGame();
         }, 500);
     } else {
         if (gameStatus.level != maxLevels) {
-		console.log('plop2');
             incrementLevel();
             gameStatus.gameIndex = -1;
             gameStatus.shuffle.shuffle();
@@ -52,6 +53,7 @@ function gameTransition(wonGame, score) {
                 nextGame();
             }, 1500);            
         } else {
+	    $('#result').empty().append('won');		
             showScreen('youwin');             
         }        
     }
@@ -78,9 +80,17 @@ function renderCredits() {
 }
 
 
-function loadGames() {
+function loadGames(forceGame) {
     $('.iframe_container').remove();
     gameStatus = new GameStatus();
+	
+	if (forceGame !== undefined) {
+		gamesId = [forceGame];
+		maxLevels = 1;
+		startLifes = 1;
+		gameStatus.lifes = 1;
+		gameStatus.forceGame = true;
+	}
 
     for (i=0; i<gamesId.length; i++) {
         gameStatus.shuffle[i] = i;
@@ -152,10 +162,14 @@ function loading() {
     $('#gameCounter').attr('value', gameStatus.gamesLoaded/gamesId.length*100);
     if (gameStatus.gamesLoaded == gamesId.length) {
             $('#hud').show();
-            showScreen('levelup');
-            setTimeout(function() {
-                nextGame();
-            }, 1500); 
+	    if (gameStatus.forceGame) {
+			nextGame();
+	    } else {
+		    showScreen('levelup');
+		    setTimeout(function() {
+			nextGame();
+		    }, 1500);
+	    }
     }
 }
 
@@ -181,12 +195,10 @@ function displayHearts(n) {
 
 function incrementScore(score) {
     gameStatus.score += score;
-    $('span.score').empty();
-    $('span.score').append(gameStatus.score);    
+    $('span.score').empty().append(gameStatus.score);   
 }
 
 function incrementLevel() {
     gameStatus.level += 1;
-    $('.level').empty();
-    $('.level').append(gameStatus.level);    
+    $('.level').empty().append(gameStatus.level);    
 }

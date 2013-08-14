@@ -76,4 +76,8 @@ This API is really simple:
 	
 You can find in the *Game1* folder a very simple game example.
 
+Test your mini-game
+--------------------
 
+When coding your game, you can easily test it by appending a parameter to the end of the url with the name of your game, e.g. *index.html?Game1* will call only Game1.
+Please note that your game should be mentioned in config.js.

@@ -6,17 +6,25 @@
 		<script type='text/javascript' src='jquery.min.js'></script>
 		<script type="text/javascript">
 		<!--
+
+
+			
+
 		var unityObjectUrl = "UnityObject2.js";
 		if (document.location.protocol == 'https:')
 			unityObjectUrl = unityObjectUrl.replace("http://", "https://ssl-");
 		document.write('<script type="text\/javascript" src="' + unityObjectUrl + '"><\/script>');
 		-->
 		</script>
+
 		<script type="text/javascript">
 		<!--
+
+		function gameLoad(bbq) {
+
 			var config = {
-				width: 960, 
-				height: 600,
+				width: 800, 
+				height: 480,
 				params: { enableDebugging:"0" }
 				
 			};
@@ -56,75 +64,31 @@
 						break;
 					}
 				});
+
+
+
 				u.initPlugin(jQuery("#unityPlayer")[0], "Web.unity3d");
 			});
-		-->
-		</script>
 
-		<script type="text/javascript" language="javascript">
-		<!--
+			bbq.ready()
+
+
+		function EndGame(str) {
+			console.log("work");
+			bbq.end(true, 1)
+		}
+
 		// c'est ici qu'on peut def par exemple une fonction a appeler
 		// egalement possible dappeler depuis un fichier
-		function HelloWorld(str) {
-			alert(str);
-		}
+
+	}
+
+
+
 		-->
 		</script>
 
-		<style type="text/css">
-		<!--
-		body {
-			font-family: Helvetica, Verdana, Arial, sans-serif;
-			background-color: white;
-			color: black;
-			text-align: center;
-		}
-		a:link, a:visited {
-			color: #000;
-		}
-		a:active, a:hover {
-			color: #666;
-		}
-		p.header {
-			font-size: small;
-		}
-		p.header span {
-			font-weight: bold;
-		}
-		p.footer {
-			font-size: x-small;
-		}
-		div.content {
-			margin: auto;
-			width: 960px;
-		}
-		div.broken,
-		div.missing {
-			margin: auto;
-			position: relative;
-			top: 50%;
-			width: 193px;
-		}
-		div.broken a,
-		div.missing a {
-			height: 63px;
-			position: relative;
-			top: -31px;
-		}
-		div.broken img,
-		div.missing img {
-			border-width: 0px;
-		}
-		div.broken {
-			display: none;
-		}
-		div#unityPlayer {
-			cursor: default;
-			height: 600px;
-			width: 960px;
-		}
-		-->
-		</style>
+
 	</head>
 	<body>
 		<p class="header"><span>Unity Web Player | </span>FramSample</p>

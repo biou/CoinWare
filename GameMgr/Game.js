@@ -45,11 +45,15 @@ Game.prototype.onReady = function(callback)
 	this.readyCB = callback;
 }
 
-Game.prototype.start = function(difficulty)
+Game.prototype.start = function(params)
 {
 	if (this.status != "running") {
 		this.status = "running";
-		this.startCB(difficulty);
+		if (startCB != null) {
+			this.startCB(params);
+		} else {
+			console.log('Game.onStart is not set!');
+		}
 	} else {
 		console.log('game '+this.id+' already started');
 	}

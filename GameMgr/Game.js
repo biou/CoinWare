@@ -8,7 +8,7 @@ function Game(id) {
 
 // methods to use in your game
 
-// Game.onStart(function(difficulty) {}): pass a callback function with one parameter, the difficulty. 
+// Game.onStart(function(params) {}): pass a callback function with one parameter, the difficulty. 
 // This callback function will be called when your game must start
 Game.prototype.onStart = function(callback)
 {

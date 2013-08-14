@@ -22,7 +22,7 @@ function nextGame() {
     $('#hud').show();
     $('#gameName').empty().append(g.id);
     showScreen('iframeContainer_'+g.id);
-    g.start(gameStatus.level);
+    g.start({difficulty: gameStatus.level});
 }
 
 

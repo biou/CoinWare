@@ -49,7 +49,7 @@ Game.prototype.start = function(params)
 {
 	if (this.status != "running") {
 		this.status = "running";
-		if (startCB != null) {
+		if (this.startCB != null) {
 			this.startCB(params);
 		} else {
 			console.log('Game.onStart is not set!');

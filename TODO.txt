@@ -1,7 +1,3 @@
-- for Evalyzer
-	- change in the DOM: success / failure + name of the game
-	- loading of the game via url parameter
-
 === v0.5 -> public
 
 - leaderboard

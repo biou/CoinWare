@@ -5,6 +5,23 @@ function showScreen(id) {
 
 
 $(document).ready(function() {
+	if (window.location.search != "") {
+		var str = window.location.search.substr(1);
+		var found = false;
+		for (i = 0; i< gamesId.length; i++) {
+			if (gamesId[i] == str) {
+				found = true;
+			}
+		}
+		if (found) {
+			$('.backHome').remove();
+			showScreen('loading');
+			loadGames(str);
+		} else {
+			console.log('Game not found: '+str);
+		}
+	}
+	
 	$('#gameTitle').append(gameName);
 	showScreen('welcome');
 

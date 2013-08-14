@@ -25,6 +25,10 @@ body {
 	margin-bottom: 0;
 }
 
+#infos {
+	display: none;
+}
+
 #screens>div {
 	display: none;
 	width:802px;

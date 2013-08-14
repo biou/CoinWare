@@ -71,7 +71,7 @@ This API is really simple:
 * the *gameLoad* function: when the framework loads your game it will search for a function named gameLoad and then execute it. Think of it as a DOM ready function but for mini-games. When you are in this function, the Game object is available as a parameter.
 * the Game object: 
 	* *Game.ready()*: call this when your game finished loading all the assets and is ready to run.
-	* *Game.onStart(function(difficulty) {  })*: pass a callback function with one parameter, the difficulty. This callback function will be called by the framework when your mini-game should start (in fact your mini-game will be loaded by the framework but it should do nothing at first. Your callback function will start the game)
+	* *Game.onStart(function(params) {  })*: pass a callback function with one parameter, an object with parameters. This callback function will be called by the framework when your mini-game should start (in fact your mini-game will be loaded by the framework but it should do nothing at first. Your callback function will start the game). *params.difficulty* is the difficulty level of the game.
 	* *Game.end(wonGame, score)*: you must call this when the mini-game is over. It has two parameters: wonGame (boolean), score (integer)
 	
 You can find in the *Game1* folder a very simple game example.

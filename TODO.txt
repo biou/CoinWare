@@ -2,10 +2,12 @@
 
 - leaderboard
 - samples
-	- flash
-	- unity
 	- scratch
-	- contact CraftStudio to see if an integration is possible with their webplayer
+		- serveur node = serveur web qui lance les jeux
+		- conflit de serveur web probablement pour le fichier de crossdomain de flash entre le serveur de base et celui de scratchext
+		- gérer plusieurs clients simultanés...
+		- gérer la connexion de scratch à un serveur non local via l'attribut "extensionHost" dans extension.json
+	- flash
 	- Construct2
 	- GameMaker:Studio
 

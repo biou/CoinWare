@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<script src="canvasengine-1.2.6.all.min.js"></script>
+		<script src="jamfx.js"></script>
+		<style type="text/css">
+			body{
+				margin: 0px;
+			}
+
+		</style>
+		<script type="text/javascript">
+			function gameLoad(gameMgr) {
+				// configure your game
+				game = gameMgr;
+				if (canvas.Scene._scenes.MainMenu.checkIfLoaded() == true)
+					game.ready();
+				
+				game.onStart(function(params) {
+						console.log('difficulty '+params.difficulty);
+					
+					// start game loop here
+					canvas.Scene._scenes.MainMenu.play();
+					
+					});
+			}; 
+		</script> 
+	</head>
+	<body>
+
+		<canvas id="canvas_id" width="800" height="480"></canvas>
+
+		<audio loop id="bzz">
+						  <source src="sounds/bzz.ogg" type="audio/ogg">
+		 </audio>
+		 <audio id="splash">
+						  <source src="sounds/splash.ogg" type="audio/ogg">
+		 </audio>
+	 </body>
+ 
+ </html>

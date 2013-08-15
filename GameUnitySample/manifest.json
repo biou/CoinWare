@@ -1,0 +1,13 @@
+{
+    "id": "GameUnitySample",
+    "name": "Sample Unity Game",
+    "description": "",
+    "teamName": "",
+    "credits": [
+        {
+            "name": "Wolfnux",
+            "job": "Code",
+            "url": ""
+        }
+    ]
+}

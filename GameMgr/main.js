@@ -33,8 +33,9 @@ function gameTransition(wonGame, score) {
         gameStatus.lifes--;
         if (gameStatus.lifes == 0) {
             $('.lifes').empty();
-	    $('#result').empty().append('lost');
+            $('#result').empty().append('lost');
             showScreen('youlose');
+            resetGames();            
             return;
         }
     }
@@ -54,7 +55,8 @@ function gameTransition(wonGame, score) {
             }, 1500);            
         } else {
 	    $('#result').empty().append('won');		
-            showScreen('youwin');             
+            showScreen('youwin'); 
+            resetGames();            
         }        
     }
 }
@@ -81,9 +83,7 @@ function renderCredits() {
 
 
 function loadGames(forceGame) {
-    $('.iframe_container').remove();
-    gameStatus = new GameStatus();
-	
+    gameStatus = new GameStatus();	
 	if (forceGame !== undefined) {
 		gamesId = [forceGame];
 		maxLevels = 1;
@@ -201,4 +201,8 @@ function incrementScore(score) {
 function incrementLevel() {
     gameStatus.level += 1;
     $('.level').empty().append(gameStatus.level);    
+}
+
+function resetGames() {
+    $('.iframe_container').remove();
 }

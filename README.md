@@ -79,8 +79,14 @@ You can find in the *Game1* folder a very simple game example.
 Test your mini-game
 --------------------
 
-When coding your game, you can easily test it by appending a parameter to the end of the url with the name of your game, e.g. *index.html?Game1* will call only Game1.
-Please note that your game should be mentioned in config.js.
+When coding your game, you can easily test it by including (preferably before all your own scripts) in your index.html the two following JavaScript files, like this:
+
+	<script type="text/javascript" src="../GameMgr/Game.js"></script> 
+	<script type="text/javascript" src="../GameMgr/MockGame.js"></script> 
+
+Then you can load your index.html directly in your Web browser.
+
+But if you want to try your game in the CoinWare framework chrome, you have another option: you can append a parameter to the end of the url with the name of your game, e.g. *index.html?Game1* and it will only launch Game1. Please note that your game should be mentioned in config.js in this case.
 
 
 Is my technology supported?

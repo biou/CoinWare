@@ -64,6 +64,7 @@ function gameTransition(wonGame, score) {
 function renderCredits() {
     // loading game manifests
 
+    $('#creditsList').empty();
     for (i = 0; i< gamesId.length; i++) {
         $.getJSON(gamesId[i]+'/manifest.json')
             .done(function(data) {

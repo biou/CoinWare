@@ -68,31 +68,31 @@ Game API
 Then, you have to integrate your mini-game with the Game API provided by the framework. Basically it provides a mean to load, start and stop your mini-game, but also to know the difficulty level and to report the score.
 
 This API is really simple:
-* the *gameLoad* function: when the framework loads your game it will search for a function named gameLoad and then execute it. Think of it as a DOM ready function but for mini-games. When you are in this function, the Game object is available as a parameter.
-* the Game object: 
-	* *Game.ready()*: call this when your game finished loading all the assets and is ready to run.
-	* *Game.onStart(function(params) {  })*: pass a callback function with one parameter, an object with parameters. This callback function will be called by the framework when your mini-game should start (in fact your mini-game will be loaded by the framework but it should do nothing at first. Your callback function will start the game). *params.difficulty* is the difficulty level of the game.
-	* *Game.end(wonGame, score)*: you must call this when the mini-game is over. It has two parameters: wonGame (boolean), score (integer)
+* the *gameLoad* function: when the framework loads your game it will search for a function named gameLoad and then execute it. Think of it as a DOM ready function but for mini-games. When you are in this function, the CWGame object is available as a parameter.
+* the CWGame object: 
+	* *CWGame.ready()*: call this when your game finished loading all the assets and is ready to run.
+	* *CWGame.onStart(function(params) {  })*: pass a callback function with one parameter, an object containing parameters. This callback function will be called by the framework when your mini-game should start (in fact your mini-game will be loaded by the framework but it should do nothing at first. Your callback function will start the game). *params.difficulty* is the difficulty level of the game. Please note that you must register your onStart handler before calling *CWGame.ready()*;
+	* *CWGame.end(wonGame, score)*: you must call this when the mini-game is over. It has two parameters: wonGame (boolean), score (integer)
 	
-You can find in the *Game1* folder a very simple game example.
+You can find in the *HelloWorld* folder a very simple game example.
 
 Test your mini-game
 --------------------
 
 When coding your game, you can easily test it by including (preferably before all your own scripts) in your index.html the two following JavaScript files, like this:
 
-	<script type="text/javascript" src="../GameMgr/Game.js"></script> 
+	<script type="text/javascript" src="../GameMgr/CWGame.js"></script> 
 	<script type="text/javascript" src="../GameMgr/MockGame.js"></script> 
 
 Then you can load your index.html directly in your Web browser.
 
-But if you want to try your game in the CoinWare framework chrome, you have another option: you can append a parameter to the end of the url with the name of your game, e.g. *index.html?Game1* and it will only launch Game1. Please note that your game should be mentioned in config.js in this case.
+But if you want to try your game in the CoinWare framework chrome, you have another option: you can append a parameter to the end of the url with the name of your game, e.g. *index.html?HelloWorld* and it will only launch HelloWorld. Please note that your game should be mentioned in config.js in this case.
 
 
 Is my technology supported?
 ---------------------------
 CoinWare currently supports the integration with the following technologies:
-* Unity: see GameUnitySample folder
+* Unity: see UnitySample folder
 * CraftStudio: see [this article on the CraftStudio blog](http://sparklinlabs.com/2013/08/monkeypatching-the-craftstudio-web-player/)
 
 

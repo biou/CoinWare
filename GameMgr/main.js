@@ -1,3 +1,5 @@
+if (!window.console) console = {log: function() {}};
+
 function GameStatus() {
     this.gamesLoaded = 0;
     this.gameIndex = -1;
@@ -14,8 +16,6 @@ gameStatus = null;
 
 function nextGame() {
     gameStatus.gameIndex++;
-	console.log(gameStatus.shuffle);
-	console.log(gameStatus.gameIndex);
     var g = gameStatus.games[gameStatus.shuffle[gameStatus.gameIndex]];
     $('.lifes').empty();
     $('.lifes').append(displayHearts(gameStatus.lifes));
@@ -68,12 +68,23 @@ function renderCredits() {
     for (i = 0; i< gamesId.length; i++) {
         $.getJSON(gamesId[i]+'/manifest.json')
             .done(function(data) {
-                $('#creditsList').append('<div class="creditElem"><img width="200" src="'+data.id+'/thumbnail.jpg" alt="'+data.name+'" /><p><b>'+data.name+'</b> by '+data.teamName+'<br />'+ data.description+'<br /></p><ul>');
+                var str = "";
+                str += '<div class="creditElem"><a href="?'+data.id+'"><img class="thumb" width="200" src="'+data.id+'/thumbnail.jpg" alt="'+data.name+'" /></a><p><b>'+data.name+'</b>';
+                if (data.teamName) {
+                    str += ' by '+data.teamName;
+                }
+                str += '<br />';
+                if (data.description) {
+                    str += data.description+'<br />';
+                } 
+                str += '</p><ul>';
+                
                 for (i=0; i<data.credits.length; i++) {
                     var e = data.credits[i];
-                    $('#creditsList').append('<li>'+e.job+': <a href="'+e.url+'">'+e.name+'</a></li>');
+                    str += '<li>'+e.job+': <a href="'+e.url+'">'+e.name+'</a></li>';
                 }
-                $('#creditsList').append('</ul></div>');
+                str += '</ul><div class="clear"></div></div>';
+                $('#creditsList').append(str);
             })
             .fail(function( jqxhr, textStatus, error ) {
                 var err = textStatus + ', ' + error;
@@ -84,6 +95,7 @@ function renderCredits() {
 
 
 function loadGames(forceGame) {
+    $('#gameCounter').attr('value', 0);
     gameStatus = new GameStatus();	
 	if (forceGame !== undefined) {
 		gamesId = [forceGame];
@@ -102,7 +114,7 @@ function loadGames(forceGame) {
 	for (i = 0; i< gamesId.length; i++) {
 		var id = gamesId[i];
 
-        var g = new Game(id);
+        var g = new CWGame(id);
         g.onReady(loading);
         g.onEnd(gameTransition);
         gameStatus.games.push(g);
@@ -142,16 +154,14 @@ function injectGameIntoIframe(iframe, game) {
                 if (doc.gameLoad && iframe.contentDocument.readyState == 'complete') {
                     iframe.opener = iframe;                
                     doc.parent = null;
-                    //doc.Game = game; 
-                    doc.gameLoad(game); 
-                    //game.ready();                                     
+                    doc.gameLoad(game);                                    
                 } else {
                     injectGameIntoIframe(iframe, game);
                 }
             }
             catch (e)
             {
-                console.log('Unable to access iframe DOM.' + iframe.id);
+                console.log('['+game.id+ '] Error initializing game !');
                 console.log(e.toString());
                 injectGameIntoIframe(iframe, game);
             } 

@@ -1,0 +1,13 @@
+{
+    "id": "Prime",
+    "name": "Prime numbers",
+    "description": "Find the prime numbers",
+    "teamName": "",
+    "credits": [
+        {
+            "name": "Allyouneedisgnu",
+            "job": "Code",
+            "url": "https://twitter.com/allyouneedisgnu"
+        }
+    ]
+}

@@ -1,0 +1,17 @@
+{
+    "id": "HelloWorld",
+    "name": "Hello World!",
+    "description": "My elevator pitch goes here",
+    "teamName": "MyTeam",
+    "credits": [
+        {
+            "name": "Bob",
+            "job": "Graphism",
+            "url": "http://your-homepage-here.org"
+        },{
+            "name": "Jack",
+            "job": "Code",
+            "url": "http://your-homepage-here.org"           
+        }
+    ]
+}

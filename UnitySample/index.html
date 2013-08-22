@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Unity Web Player | FramSample</title>
+		<script type="text/javascript" src="../GameMgr/CWGame.js"></script> 
+		<script type="text/javascript" src="../GameMgr/MockGame.js"></script> 
+		<script type='text/javascript' src='jquery.min.js'></script>
+		<script type="text/javascript">
+		<!--
+
+
+			
+
+		var unityObjectUrl = "UnityObject2.js";
+       	if (document.location.protocol == 'https:')
+			unityObjectUrl = unityObjectUrl.replace("http://", "https://ssl-");
+		document.write('<script type="text\/javascript" src="' + unityObjectUrl + '"><\/script>');
+		-->
+		</script>
+
+		<script type="text/javascript">
+		<!--
+
+		function gameLoad(bbq) {
+
+			var config = {
+				width: 800, 
+				height: 480,
+				params: { enableDebugging:"0" }
+				
+			};
+			bbq.onStart(function(params) {});
+
+			var u = new UnityObject2(config);
+
+			jQuery(function() {
+
+				var $missingScreen = jQuery("#unityPlayer").find(".missing");
+				var $brokenScreen = jQuery("#unityPlayer").find(".broken");
+				$missingScreen.hide();
+				$brokenScreen.hide();
+				
+				u.observeProgress(function (progress) {
+					switch(progress.pluginStatus) {
+						case "broken":
+							$brokenScreen.find("a").click(function (e) {
+								e.stopPropagation();
+								e.preventDefault();
+								u.installPlugin();
+								return false;
+							});
+							$brokenScreen.show();
+						break;
+						case "missing":
+							$missingScreen.find("a").click(function (e) {
+								e.stopPropagation();
+								e.preventDefault();
+								u.installPlugin();
+								return false;
+							});
+							$missingScreen.show();
+						break;
+						case "installed":
+							$missingScreen.remove();
+						break;
+						case "first":
+						break;
+					}
+				});
+
+
+
+				u.initPlugin(jQuery("#unityPlayer")[0], "Web.unity3d");
+			});
+
+			bbq.ready()
+
+
+		window.EndGame = function(str) {
+			console.log("work");
+			bbq.end(true, 1)
+		}
+	}
+
+
+
+		-->
+		</script>
+
+
+	</head>
+	<body>
+		<p class="header"><span>Unity Web Player | </span>FramSample | Press "a" on your keyboard</p>
+		<div class="content">
+			<div id="unityPlayer">
+				<div class="missing">
+					<a href="http://unity3d.com/webplayer/" title="Unity Web Player. Install now!">
+						<img alt="Unity Web Player. Install now!" src="http://webplayer.unity3d.com/installation/getunity.png" width="193" height="63" />
+					</a>
+				</div>
+				<div class="broken">
+					<a href="http://unity3d.com/webplayer/" title="Unity Web Player. Install now! Restart your browser after install.">
+						<img alt="Unity Web Player. Install now! Restart your browser after install." src="http://webplayer.unity3d.com/installation/getunityrestart.png" width="193" height="63" />
+					</a>
+				</div>
+			</div>
+		</div>
+		<p class="footer">Press "a" on your keyboard</p>
+	</body>
+</html>
+
+

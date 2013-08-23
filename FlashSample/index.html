@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+	<head>
+		<title></title>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<script type="text/javascript" src="swfobject.js"></script>
+		<script type="text/javascript" src="../GameMgr/CWGame.js"></script> 
+		<script type="text/javascript" src="../GameMgr/MockGame.js"></script> 		  
+		<script type="text/javascript">	
+		// set up the name of your flash file and the id of the object here
+		var flashId = 'FlashSample';
+		var flashFilename = 'FlashSample.swf';
+
+
+		var game = null;
+		var flash = null;
+		function gameLoad(gameMgr) {
+			game = gameMgr;
+
+			var flashvars = {};
+			var params = {};
+			var attributes = {};
+			attributes.id = flashId;
+			attributes.name = flashId;
+			swfobject.embedSWF(flashFilename, "altContent", "800", "480", "9.0.0", false, flashvars, params, attributes, 
+				function(e) {
+					if (e.success) {
+						console.log('swfobject: loaded successfully');
+						game.onStart(function(params) {
+							startGame(params.difficulty);
+						});
+						game.ready();	
+					} else {
+						console.log('swfobject: failed loading');
+					}
+			});
+		
+		}; 
+
+
+		// flash callbacks are not available immediately when dom is ready and flash object finished loading
+		// we have no event to know when it is ready so we have to do some kind of polling...
+		function startGame(difficulty) {
+			setTimeout(function() {
+				flash = document.getElementById('FlashSample');
+				if (typeof flash.startGame === 'function') {
+					flash.startGame(difficulty);
+				} else {
+					startGame(difficulty);
+				}
+			},500);
+		}
+
+		function endGame(hasWon, score) {
+			game.end(hasWon, score);
+		}		
+
+		</script>
+
+	</head>
+	<body>
+		<div id="altContent">
+			<a href="http://www.adobe.com/go/getflashplayer">
+				<img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" />
+			</a>
+		</div>
+	</body>
+</html>

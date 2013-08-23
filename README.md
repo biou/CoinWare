@@ -92,6 +92,7 @@ But if you want to try your game in the CoinWare framework chrome, you have anot
 Is my technology supported?
 ---------------------------
 CoinWare currently supports the integration with the following technologies:
+* Flash: see FlashSample folder
 * Unity: see UnitySample folder
 * CraftStudio: see [this article on the CraftStudio blog](http://sparklinlabs.com/2013/08/monkeypatching-the-craftstudio-web-player/)
 

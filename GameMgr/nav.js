@@ -19,7 +19,7 @@ $(document).ready(function() {
 			loadGames(str);
 		} else {
 			console.log('Game not found: '+str);
-		}
+		}	
 	}
 	
 	$('#gameTitle').append(gameName);
@@ -37,6 +37,8 @@ $(document).ready(function() {
         return false;
     }); 
 	$('#lleaderboard').click(function() {
+		updateLeaderboard();
+		$('.highscoresList').show();
 		showScreen('leaderboard');
         return false;
     });
@@ -44,6 +46,9 @@ $(document).ready(function() {
 		renderCredits();
 		showScreen('credits');
         return false;
-    });           
+    });   
+
+    $('#inputScoreWinner').submit(function() { addToLeaderboard(true); return false; });
+    $('#inputScoreLoser').submit(function() { addToLeaderboard(false);  return false; });
 
 });

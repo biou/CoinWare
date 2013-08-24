@@ -38,15 +38,32 @@
 	</div>
 	<div id="youwin">
 		<h1>You Win!</h1>
+
+		<div class="scores">
+				<form class="inputScore" id="inputScoreWinner">
+					<label for="Winner">Your Name</label><input type="text" id="Winner" />
+					<input type="submit" value="ok" />
+				</form>
+				<ol class="highscoresList">
+				</ol>
+		</div>
 		<a href="#" class="backHome">Back to Home</a>
 	</div>
 	<div id="youlose">
-		<h1>You lose!</h1>		
+		<h1>You lose!</h1>
+		<div class="scores">
+				<form class="inputScore" id="inputScoreLoser">
+					<label for="Loser">Your Name</label><input type="text" id="Loser" />
+					<input type="submit" value="ok" />
+				</form>
+				<ol class="highscoresList">
+				</ol>
+		</div>				
 		<a href="#" class="backHome">Back to Home</a>		
 	</div>
 	<div id="leaderboard" class="nohud">
 		<h1>High Scores</h1>
-		<ol id="highscoresList">
+		<ol class="highscoresList">
 			<li>Bob: 1000000</li>
 			<li>Jack: 995000</li>
 			<li>Joe: 450000</li>

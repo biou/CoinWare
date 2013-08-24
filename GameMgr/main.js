@@ -12,6 +12,7 @@ function GameStatus() {
 }
 
 gameStatus = null;
+leaderboard = [];
 
 
 function nextGame() {
@@ -215,5 +216,41 @@ function incrementLevel() {
 }
 
 function resetGames() {
+    $('.inputScore').show();
+    $('.highscoresList').hide();
     $('.iframe_container').remove();
+}
+
+function addToLeaderboard(winner) {
+    var nameSuffix = "";
+    if (winner) {
+        nameSuffix = "Winner";
+    } else {
+        nameSuffix = "Loser";
+    }
+    var formId = "#inputScore"+nameSuffix;
+    var inputId = "#"+nameSuffix;
+    var playerName = $(inputId).val().trim();
+    var playerScore = $('span.score').text();
+    if (playerName != "") {
+        var score = { score: playerScore, name: playerName}; 
+        leaderboard.push(score);
+        leaderboard.sort(function(a,b) { return (b.score - a.score);});
+        updateLeaderboard();
+        $(formId).hide();
+        $(inputId).val("");
+        $('.highscoresList').show();
+    }
+    return false;
+}
+
+function updateLeaderboard() {
+    $('.highscoresList').empty();
+    for (var i=0; i<Math.min(leaderboard.length,10); i++) {
+        var it = leaderboard[i];
+        console.log(i);
+        console.log(leaderboard[i]);
+        console.log(leaderboard[i].name);  
+        $('.highscoresList').append('<li>'+it.name+': '+it.score+'</li>');
+    }
 }

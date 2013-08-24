@@ -62,3 +62,7 @@ span.hright {
 iframe {
 	border: black 1px solid;
 }
+
+.highscoresList {
+	display: none;
+}

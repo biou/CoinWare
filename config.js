@@ -11,5 +11,5 @@ var maxLevels = 3;
 // number of lifes in the global game
 var startLifes = 5;
 
-// url of the server (mainly for leaderboard sharing)
-var serverUrl = "";
+// activate server synchronization (mainly for leaderboard sharing)
+var serverSync = false;

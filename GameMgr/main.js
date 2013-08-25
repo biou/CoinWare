@@ -234,23 +234,41 @@ function addToLeaderboard(winner) {
     var playerScore = $('span.score').text();
     if (playerName != "") {
         var score = { score: playerScore, name: playerName}; 
-        leaderboard.push(score);
-        leaderboard.sort(function(a,b) { return (b.score - a.score);});
-        updateLeaderboard();
-        $(formId).hide();
-        $(inputId).val("");
-        $('.highscoresList').show();
+        if (serverSync) {
+            $.post("/score", score, function(data) {
+                leaderboard = data;
+                updateLeaderboard();
+                $(formId).hide();
+                $(inputId).val("");
+                $('.highscoresList').show();
+                               
+            });
+        } else {
+            leaderboard.push(score);
+            leaderboard.sort(function(a,b) { return (b.score - a.score);});
+            updateLeaderboard();
+            $(formId).hide();
+            $(inputId).val("");
+            $('.highscoresList').show();
+        }
     }
     return false;
 }
 
 function updateLeaderboard() {
     $('.highscoresList').empty();
-    for (var i=0; i<Math.min(leaderboard.length,10); i++) {
-        var it = leaderboard[i];
-        console.log(i);
-        console.log(leaderboard[i]);
-        console.log(leaderboard[i].name);  
-        $('.highscoresList').append('<li>'+it.name+': '+it.score+'</li>');
+    if (serverSync) {
+        $.get("/score", function(data) {
+            leaderboard = data;
+            for (var i=0; i<Math.min(leaderboard.length,10); i++) {
+                var it = leaderboard[i];  
+                $('.highscoresList').append('<li>'+it.name+': '+it.score+'</li>');
+            }
+        });
+    } else {
+        for (var i=0; i<Math.min(leaderboard.length,10); i++) {
+            var it = leaderboard[i];  
+            $('.highscoresList').append('<li>'+it.name+': '+it.score+'</li>');
+        }
     }
 }

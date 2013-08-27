@@ -37,7 +37,7 @@ $(document).ready(function() {
         return false;
     }); 
 	$('#lleaderboard').click(function() {
-		updateLeaderboard();
+		updateLeaderboard(10);
 		$('.highscoresList').show();
 		showScreen('leaderboard');
         return false;

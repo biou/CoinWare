@@ -41,9 +41,12 @@ body {
 #screens>div.iframe_container {
 	border: none;
 }
+
+
 #screens>div.nohud {
 	margin-top: 20px;
 }
+
 
 div.hud {
 	margin:none;
@@ -63,6 +66,6 @@ iframe {
 	border: black 1px solid;
 }
 
-.highscoresList {
+.highscores_container {
 	display: none;
 }

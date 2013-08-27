@@ -13,6 +13,7 @@ function GameStatus() {
 
 gameStatus = null;
 leaderboard = [];
+sounds = [];
 
 
 function nextGame() {
@@ -32,9 +33,13 @@ function gameTransition(wonGame, score) {
     incrementScore(score);
     if (!wonGame) {
         gameStatus.lifes--;
+	$('.lifes').empty().append(displayHearts(gameStatus.lifes)); 
         if (gameStatus.lifes == 0) {
             $('.lifes').empty();
             $('#result').empty().append('lost');
+		if (sounds['youlose']) {
+			sounds['youlose'].play();
+		}
             showScreen('youlose');
             resetGames();            
             return;
@@ -42,19 +47,28 @@ function gameTransition(wonGame, score) {
     }
     if (gameStatus.gameIndex != (gameStatus.games.length-1)) {
         showScreen('transition');
+	if (sounds['ready']) {
+		sounds['ready'].play();
+	}	    
         setTimeout(function() {
             nextGame();
-        }, 500);
+        }, 1500);
     } else {
         if (gameStatus.level != maxLevels) {
             incrementLevel();
             gameStatus.gameIndex = -1;
             gameStatus.shuffle.shuffle();
+	    if (sounds['levelup']) {
+	        sounds['levelup'].play();
+	    }		
             showScreen('levelup');
             setTimeout(function() {
                 nextGame();
             }, 1500);            
         } else {
+	     if (sounds['youwin']) {
+		sounds['youwin'].play();
+	    }		
 	    $('#result').empty().append('won');		
             showScreen('youwin'); 
             resetGames();            
@@ -177,6 +191,12 @@ function loading() {
 	    if (gameStatus.forceGame) {
 			nextGame();
 	    } else {
+		    $('span.score').empty().append(gameStatus.score);   
+		    $('.level').empty().append(gameStatus.level); 
+		    $('.lifes').empty().append(displayHearts(gameStatus.lifes));  
+		    if (sounds['levelup']) {
+			    sounds['levelup'].play();
+		    }	 		    
 		    showScreen('levelup');
 		    setTimeout(function() {
 			nextGame();
@@ -217,7 +237,7 @@ function incrementLevel() {
 
 function resetGames() {
     $('.inputScore').show();
-    $('.highscoresList').hide();
+    $('.highscores_container').hide();
     $('.iframe_container').remove();
 }
 
@@ -237,36 +257,36 @@ function addToLeaderboard(winner) {
         if (serverSync) {
             $.post("/score", score, function(data) {
                 leaderboard = data;
-                updateLeaderboard();
+                updateLeaderboard(5);
                 $(formId).hide();
                 $(inputId).val("");
-                $('.highscoresList').show();
+                $('.highscores_container').show();
                                
             });
         } else {
             leaderboard.push(score);
             leaderboard.sort(function(a,b) { return (b.score - a.score);});
-            updateLeaderboard();
+            updateLeaderboard(5);
             $(formId).hide();
             $(inputId).val("");
-            $('.highscoresList').show();
+            $('.highscores_container').show();
         }
     }
     return false;
 }
 
-function updateLeaderboard() {
+function updateLeaderboard(num) {
     $('.highscoresList').empty();
     if (serverSync) {
         $.get("/score", function(data) {
             leaderboard = data;
-            for (var i=0; i<Math.min(leaderboard.length,10); i++) {
+            for (var i=0; i<Math.min(leaderboard.length,num); i++) {
                 var it = leaderboard[i];  
                 $('.highscoresList').append('<li>'+it.name+': '+it.score+'</li>');
             }
         });
     } else {
-        for (var i=0; i<Math.min(leaderboard.length,10); i++) {
+        for (var i=0; i<Math.min(leaderboard.length,num); i++) {
             var it = leaderboard[i];  
             $('.highscoresList').append('<li>'+it.name+': '+it.score+'</li>');
         }

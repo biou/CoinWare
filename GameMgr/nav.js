@@ -1,10 +1,13 @@
 function showScreen(id) {
+	//console.log('showScreen '+id);
 	$('#screens>div').hide();
 	$('#'+id).show();
 }
 
-
 $(document).ready(function() {
+	$('#gameTitle').append(gameName);
+	showScreen('welcome');
+	
 	if (window.location.search != "") {
 		var str = window.location.search.substr(1);
 		var found = false;
@@ -22,9 +25,6 @@ $(document).ready(function() {
 		}	
 	}
 	
-	$('#gameTitle').append(gameName);
-	showScreen('welcome');
-
 	$('#lstart').click(function() {
 		showScreen('loading');
 		loadGames();

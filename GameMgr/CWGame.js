@@ -4,6 +4,7 @@ function CWGame(id) {
 	this.readyCB = null;
 	this.endCB = null;
 	this.status = "stopped";
+	this.preload = true;
 };
 
 // methods to use in your game

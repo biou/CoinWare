@@ -94,6 +94,7 @@ Is my technology supported?
 CoinWare currently supports the integration with the following technologies:
 * Flash: see FlashSample folder
 * Unity: see UnitySample folder
+* Construct2: see C2Sample folder
 * CraftStudio: see [this article on the CraftStudio blog](http://sparklinlabs.com/2013/08/monkeypatching-the-craftstudio-web-player/)
 
 
@@ -104,3 +105,10 @@ Credits
 * Vincent Lark: architecture & code review
 * Aymeric Girault: Unity sample
 * Thomas Altenburger: html5 sample
+
+FAQ
+===
+
+* *I developed a game, but it does not seem to load properly in the framework.*
+
+Are you sure you called GameMgr.ready() ? If this is the case, it is possible that your framework is not compatible with the framework preloading system. In this case, you can add the following attribute value in your manifest file : *preload: "false"*

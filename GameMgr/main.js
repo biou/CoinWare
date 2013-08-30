@@ -24,13 +24,27 @@ function nextGame() {
     $('#hud').show();
     $('#gameName').empty().append(g.id);
     showScreen('iframeContainer_'+g.id);
-    g.start({difficulty: gameStatus.level});
+    if (g.preload) {
+	    g.start({difficulty: gameStatus.level});
+		setTimeout(function() {document.getElementById('iframe_'+g.id).contentWindow.focus(); }, 100);
+	    } else {
+		g.onReady(function() { 
+			g.start({difficulty: gameStatus.level});
+			setTimeout(function() {document.getElementById('iframe_'+g.id).contentWindow.focus(); }, 100);			
+		});
+		var iframe = createGameIframe(g.id);
+		document.getElementById('iframeContainer_'+g.id).appendChild(iframe);
+		injectGameIntoIframe(iframe, g);
+    }
 }
-
-
 
 function gameTransition(wonGame, score) {
     incrementScore(score);
+	var g = gameStatus.games[gameStatus.shuffle[gameStatus.gameIndex]];
+	if (!g.preload) {
+		$('#iframe_'+g.id).remove();
+	}
+	
     if (!wonGame) {
         gameStatus.lifes--;
 	$('.lifes').empty().append(displayHearts(gameStatus.lifes)); 
@@ -71,7 +85,7 @@ function gameTransition(wonGame, score) {
 	    }		
 	    $('#result').empty().append('won');		
             showScreen('youwin'); 
-            resetGames();            
+            resetGames();           
         }        
     }
 }
@@ -128,40 +142,64 @@ function loadGames(forceGame) {
 	// iframes creation
 	for (i = 0; i< gamesId.length; i++) {
 		var id = gamesId[i];
+		$.ajax({
+			dataType: "json",
+			url: gamesId[i]+'/manifest.json',
+			async: false,
+			success: function(data) {
+					var g = new CWGame(data.id);
+					if (data.preload) {
+						if (data.preload.trim().toLowerCase() === "false") {
+							g.preload = false;
+							console.log('['+g.id+'] preload off');
+						}
+					}
+					g.onReady(loading);
+					g.onEnd(gameTransition);
+					gameStatus.games.push(g);
 
-        var g = new CWGame(id);
-        g.onReady(loading);
-        g.onEnd(gameTransition);
-        gameStatus.games.push(g);
+					// iframe container
+					var iframeContainer = document.createElement('div');
+					iframeContainer.id = 'iframeContainer_'+id;
+					iframeContainer.className = 'iframe_container';
+					iframeContainer.game = g;
 
-        // iframe container
-        var iframeContainer = document.createElement('div');
-        iframeContainer.id = 'iframeContainer_'+id;
-        iframeContainer.className = 'iframe_container';
-        iframeContainer.game = g;
-
-        // iframe document
-        var iframe = document.createElement('iframe');
-        iframe.id = 'iframe_'+id;
-        iframe.name = 'iframe_'+id;
-        iframe.frameBorder = 0;
-        iframe.width = 800;
-        iframe.height = 480;
-        iframe.setAttribute('scrolling', 'no');
-        iframe.src = id + '/index.html';
-        
-        iframeContainer.appendChild(iframe);
-
-        $('#screens').append(iframeContainer);
-         // widget object injection management
-         // it seems like there  is no reliable way to know when an iframe is completely loaded
-         // Warning gruik hack: I used setTimeout...
-        injectGameIntoIframe(iframe, g);
-
-    }
+					 if (g.preload) {		
+						var iframe = createGameIframe(id);
+						iframeContainer.appendChild(iframe);
+						 $('#screens').append(iframeContainer);
+						injectGameIntoIframe(iframe, g);
+					 } else {
+						 $('#screens').append(iframeContainer);
+						loading();
+					 }
+				 },
+			 error: function( jqxhr, textStatus, error ) {
+					var err = textStatus + ', ' + error;
+					console.log( "Request Failed: " + err);
+				}
+		});
+	}
 };
 
+function createGameIframe(id) {
+		// iframe document
+		var iframe = document.createElement('iframe');
+		iframe.id = 'iframe_'+id;
+		iframe.name = 'iframe_'+id;
+		iframe.frameBorder = 0;
+		iframe.width = 800;
+		iframe.height = 480;
+		iframe.setAttribute('scrolling', 'no');
+		iframe.src = id + '/index.html';
+		return iframe;
+}
+
 function injectGameIntoIframe(iframe, game) {
+		 // game object injection management
+		 // it seems like there  is no reliable way to know when an iframe is completely loaded
+		 // Warning gruik hack: I used setTimeout...	
+	
         setTimeout(function() {
             try
             { 

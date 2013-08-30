@@ -1,0 +1,14 @@
+{
+    "id": "C2Sample",
+    "name": "Construct2 Sample",
+    "description": "",
+    "teamName": "",
+    "preload": "false",
+    "credits": [
+        {
+            "name": "Bob",
+            "job": "Code",
+            "url": "http://your-homepage-here.org"
+        }
+    ]
+}

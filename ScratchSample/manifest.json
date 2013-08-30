@@ -1,0 +1,14 @@
+{
+    "id": "ScratchSample",
+    "name": "Scratch Sample Game",
+    "description": "",
+    "teamName": "",
+    "preload": "false",
+    "credits": [
+        {
+            "name": "biou",
+            "job": "Code",
+            "url": ""
+        }
+    ]
+}

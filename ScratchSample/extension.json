@@ -1,0 +1,10 @@
+{
+    "extensionName": "CoinWare",
+    "extensionPort": 12345,
+    "blockSpecs": [
+        [" ", "game ready", "gameReady"],
+        [" ", "game ended %s %s", "gameEnded", "wongame", "score"],
+        ["r", "difficulty", "difficulty"],
+        ["b", "start", "start"]
+    ]
+}

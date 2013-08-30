@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<style>
+#scratch_container {
+   opacity: 0.1;
+   margin-top: 50px;
+   margin-left: 140px;
+   transition: opacity 1s ease-in-out;
+   -moz-transition: opacity 1s ease-in-out;
+   -webkit-transition: opacity 1s ease-in-out;
+}
+</style>
+<script type="text/javascript" src="../GameMgr/CWGame.js"></script> 
+<script type="text/javascript" src="../GameMgr/MockGame.js"></script> 
+<script type="text/javascript" src="../GameMgr/lib/jquery-1.10.0.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+	<script type="text/javascript">
+  var socket = io.connect('http://localhost');
+		
+	function gameLoad(gameMgr) {
+		
+		gameMgr.onStart(function(params) {
+    			console.log('difficulty '+params.difficulty);
+    			socket.emit('gameStart', { 'difficulty': params.difficulty });
+    	});
+
+		socket.on('gameReady', function (data) {
+    		gameMgr.ready();
+		});
+
+		socket.on('gameLoaded', function (data) {
+    		$('#scratch_container').css('opacity', 1);
+    		$('iframe')[0].focus();
+		});		
+
+		socket.on('gameEnded', function (data) {
+			var w = false;
+			if (data.wongame == "true") {
+				w = true;
+			}
+			setTimeout(function() {
+				gameMgr.end(w, parseInt(data.score));
+			},2000);
+    		
+		});		   	
+	}; 
+	</script>  
+</head>
+<body>
+	<div id="scratch_container">
+<iframe allowtransparency="true" width="485" height="402" src="http://scratch.mit.edu/projects/embed/12085360/" frameborder="0" allowfullscreen></iframe>		
+	</div>
+</body>
+</html>
